@@ -13,12 +13,14 @@ struct process{
 	int timeXh;
 };
 
-struct time{
+struct timee{
     int timeWait;
     int timePro;
 };
 
 int main()
 {
+	process prox[MAX];
+	timee timeInit[MAX];
 	return 0;
 }
