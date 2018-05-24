@@ -44,6 +44,13 @@ void xuat(process test[], int n)
 	}
 }
 
+void xoa(process test[], int &n, int x)
+{
+	for(int i = x ; i < n ; i++)
+		test[i] = test[i+1];
+	n--;
+}
+
 
 int main()
 {
