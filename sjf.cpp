@@ -51,6 +51,69 @@ void xoa(process test[], int &n, int x)
 	n--;
 }
 
+void sapXep(process test[], int n)
+{
+	for(int i = 0 ; i < n ; i++)
+		for(int j = i+1 ; j<n;j++)
+			if(test[i].timeXh > test[j].timeXh)
+            {
+                process tam = test[i];
+                test[i] = test[j];
+                test[j] = tam;
+            }
+}
+
+void taoGianDoGantt(process test[],time tinh[], int n)
+{
+    int timeBd = 0, dem = 0, x=n;
+    while(n)
+    {
+        if(x==n)
+            cout << "\t" << timeBd;
+        if(test[0].timeXh == 0)
+        {
+            cout <<"\t" << test[0].pro;
+            tinh[dem].timeWait = timeBd - test[0].timeXh;
+            tinh[dem].timePro = tinh[dem].timeWait + test[0].cpuB;
+            dem++;
+            timeBd += test[0].cpuB;
+            xoa(test,n,0);
+        }
+        int minn = test[0].cpuB;
+        for(int i = 0; i<n;i++)
+            if(test[i].timeXh < timeBd && minn > test[i].cpuB)
+                minn = test[i].cpuB;
+        for(int i = 0; i<n;i++)
+            if(test[i].timeXh < timeBd && minn == test[i].cpuB)
+            {
+
+                cout << "\t" << timeBd;
+                cout <<"\t" << test[i].pro;
+                tinh[dem].timeWait =timeBd - test[i].timeXh;
+                tinh[dem].timePro = tinh[dem].timeWait + test[i].cpuB;
+                dem++;
+                timeBd += test[i].cpuB;
+                xoa(test,n,i);
+            }
+        if(n==0)
+            cout << "\t" << timeBd;
+    }
+}
+
+void tinhThoiGian(time tinh[], int n)
+{
+    float timeCho, timeXuLi;
+    for(int i=0; i<n;i++)
+    {
+        timeCho += tinh[i].timeWait;
+        timeXuLi += tinh[i].timePro;
+    }
+    timeCho/=n;
+    timeXuLi/=n;
+    cout << endl << "Thoi gian cho trung binh la: " << timeCho;
+    cout << endl << "Thoi gian xu li trung binh la: " << timeXuLi;
+}
+
 
 int main()
 {
