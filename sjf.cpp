@@ -10,12 +10,12 @@ using namespace std;
 struct process{
 	int pro;
 	int cpuB;
-	int timeXh;
+	int timeeXh;
 };
 
-struct timee{
-    int timeWait;
-    int timePro;
+struct timeee{
+    int timeeWait;
+    int timeePro;
 };
 
 void nhap(process test[],int &n)
@@ -28,7 +28,7 @@ void nhap(process test[],int &n)
 		cout << "\t\tNhap ten tien trinh: ";
 		fflush(stdin);gets(test[i].pro);
 		cout << "\t\tNhap thoi gian xuat hien: ";
-		cin >> test[i].timeXh;
+		cin >> test[i].timeeXh;
 		cout << "\t\tNhap thoi gian xu li: ";
 		cin >> test[i].cpuB;
 	}
@@ -40,7 +40,7 @@ void xuat(process test[], int n)
 	cout << setw(10) << "Process" << setw(7) << "Txh" << setw(7) << "CPUb" << endl;
 	for(int i=0; i<n;i++)
 	{
-		cout << setw(10) << test[i].pro << setw(7) << test[i].timeXh << setw(7) << test[i].cpuB << endl;
+		cout << setw(10) << test[i].pro << setw(7) << test[i].timeeXh << setw(7) << test[i].cpuB << endl;
 	}
 }
 
@@ -55,7 +55,7 @@ void sapXep(process test[], int n)
 {
 	for(int i = 0 ; i < n ; i++)
 		for(int j = i+1 ; j<n;j++)
-			if(test[i].timeXh > test[j].timeXh)
+			if(test[i].timeeXh > test[j].timeeXh)
             {
                 process tam = test[i];
                 test[i] = test[j];
@@ -63,61 +63,61 @@ void sapXep(process test[], int n)
             }
 }
 
-void taoGianDoGantt(process test[],time tinh[], int n)
+void taoGianDoGantt(process test[],timee tinh[], int n)
 {
-    int timeBd = 0, dem = 0, x=n;
+    int timeeBd = 0, dem = 0, x=n;
     while(n)
     {
         if(x==n)
-            cout << "\t" << timeBd;
-        if(test[0].timeXh == 0)
+            cout << "\t" << timeeBd;
+        if(test[0].timeeXh == 0)
         {
             cout <<"\t" << test[0].pro;
-            tinh[dem].timeWait = timeBd - test[0].timeXh;
-            tinh[dem].timePro = tinh[dem].timeWait + test[0].cpuB;
+            tinh[dem].timeeWait = timeeBd - test[0].timeeXh;
+            tinh[dem].timeePro = tinh[dem].timeeWait + test[0].cpuB;
             dem++;
-            timeBd += test[0].cpuB;
+            timeeBd += test[0].cpuB;
             xoa(test,n,0);
         }
         int minn = test[0].cpuB;
         for(int i = 0; i<n;i++)
-            if(test[i].timeXh < timeBd && minn > test[i].cpuB)
+            if(test[i].timeeXh < timeeBd && minn > test[i].cpuB)
                 minn = test[i].cpuB;
         for(int i = 0; i<n;i++)
-            if(test[i].timeXh < timeBd && minn == test[i].cpuB)
+            if(test[i].timeeXh < timeeBd && minn == test[i].cpuB)
             {
 
-                cout << "\t" << timeBd;
+                cout << "\t" << timeeBd;
                 cout <<"\t" << test[i].pro;
-                tinh[dem].timeWait =timeBd - test[i].timeXh;
-                tinh[dem].timePro = tinh[dem].timeWait + test[i].cpuB;
+                tinh[dem].timeeWait =timeeBd - test[i].timeeXh;
+                tinh[dem].timeePro = tinh[dem].timeeWait + test[i].cpuB;
                 dem++;
-                timeBd += test[i].cpuB;
+                timeeBd += test[i].cpuB;
                 xoa(test,n,i);
             }
         if(n==0)
-            cout << "\t" << timeBd;
+            cout << "\t" << timeeBd;
     }
 }
 
-void tinhThoiGian(time tinh[], int n)
+void tinhThoiGian(timee tinh[], int n)
 {
-    float timeCho, timeXuLi;
+    float timeeeCho, timeeXuLi;
     for(int i=0; i<n;i++)
     {
-        timeCho += tinh[i].timeWait;
-        timeXuLi += tinh[i].timePro;
+        timeeCho += tinh[i].timeeWait;
+        timeeXuLi += tinh[i].timeePro;
     }
-    timeCho/=n;
-    timeXuLi/=n;
-    cout << endl << "Thoi gian cho trung binh la: " << timeCho;
-    cout << endl << "Thoi gian xu li trung binh la: " << timeXuLi;
+    timeeCho/=n;
+    timeeXuLi/=n;
+    cout << endl << "Thoi gian cho trung binh la: " << timeeCho;
+    cout << endl << "Thoi gian xu li trung binh la: " << timeeXuLi;
 }
 
 
 int main()
 {
 	process prox[MAX];
-	timee timeInit[MAX];
+	timeee timeeInit[MAX];
 	return 0;
 }
