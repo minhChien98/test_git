@@ -51,6 +51,14 @@ void xoa(process test[], int &n, int x)
 	n--;
 }
 
+
+void KeNgang()
+{
+	cout << "================";
+}
+
+
+
 void sapXep(process test[], int n)
 {
 	for(int i = 0 ; i < n ; i++)
