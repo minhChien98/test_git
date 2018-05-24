@@ -34,6 +34,17 @@ void nhap(process test[],int &n)
 	}
 }
 
+void xuat(process test[], int n)
+{
+	cout << "Bang tien trinh la: " << endl;
+	cout << setw(10) << "Process" << setw(7) << "Txh" << setw(7) << "CPUb" << endl;
+	for(int i=0; i<n;i++)
+	{
+		cout << setw(10) << test[i].pro << setw(7) << test[i].timeXh << setw(7) << test[i].cpuB << endl;
+	}
+}
+
+
 int main()
 {
 	process prox[MAX];
